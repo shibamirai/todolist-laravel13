@@ -171,7 +171,12 @@
         </div>
 
         @if (Route::has('login'))
-            <div class="h-14.5 hidden lg:block"></div>
+            <div class="h-14.5 hidden lg:block">
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button class="btn">ログアウト</button>
+                </form>
+            </div>
         @endif
     </body>
 </html>
