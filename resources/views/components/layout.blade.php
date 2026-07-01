@@ -13,10 +13,10 @@
             @auth
             <ul class="menu menu-horizontal px-1">
                 <li>
-                    <a href="index.html" class="menu-active">作業一覧</a>
+                    <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'menu-active' : '' }}">作業一覧</a>
                 </li>
                 <li>
-                    <a href="create.html">作業登録</a>
+                    <a href="{{ route('create') }}" class="{{ request()->routeIs('create') ? 'menu-active' : '' }}">作業登録</a>
                 </li>
             </ul>
             @endauth
