@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->family_name . ' ' . $this->first_name;
     }
+
+    public function todoItems()
+    {
+        return $this->hasMany(TodoItem::class);
+    }
 }
