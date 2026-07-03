@@ -9,8 +9,13 @@ class TodoItemController extends Controller
 {
     public function index()
     {
+        $todoItems = TodoItem::with('user')
+            ->itemNameLike(request('search'))
+            ->orWhere->userNameLike(request('search'))
+            ->orderBy('expire_date', 'asc')
+            ->get();
         return view('todo.index', [
-            'todoItems' => TodoItem::orderBy('expire_date', 'asc')->with('user')->get(),
+            'todoItems' => $todoItems,
         ]);
     }
 

@@ -3,7 +3,7 @@
 
     <div class="justify-self-end">
         <form action="#" method="get">
-            <input type="text" class="input" placeholder="検索" name="search">
+            <input type="text" class="input" placeholder="検索" name="search" value="{{ request('search') }}">
         </form>
     </div>
 
