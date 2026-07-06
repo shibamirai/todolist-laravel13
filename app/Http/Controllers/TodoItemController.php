@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TodoItemRequest;
 use App\Models\TodoItem;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class TodoItemController extends Controller
 {
@@ -61,11 +60,16 @@ class TodoItemController extends Controller
         return redirect(route('home'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function delete(TodoItem $todoItem)
+    {
+        return view('todo.delete', [
+            'todoItem' => $todoItem,
+        ]);
+    }
+
     public function destroy(TodoItem $todoItem)
     {
-        //
+        $todoItem->delete();
+        return redirect(route('home'));
     }
 }

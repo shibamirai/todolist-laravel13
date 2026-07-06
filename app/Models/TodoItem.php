@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Guarded(['id'])]
 class TodoItem extends Model
 {
     /** @use HasFactory<\Database\Factories\TodoItemFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public function user()
     {

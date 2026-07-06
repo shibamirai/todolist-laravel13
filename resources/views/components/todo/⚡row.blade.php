@@ -31,6 +31,6 @@ new class extends Component
             {{ $todoItem->finished_date ? '未完了' : '完了' }}
         </button>
         <a href="{{ route('edit', $todoItem) }}" class="btn btn-primary">修正</a>
-        <a href="#" class="btn btn-warning">削除</a>
+        <a href="{{ route('delete', $todoItem) }}" class="btn btn-warning">削除</a>
     </td>
 </tr>

@@ -16,4 +16,6 @@ Route::controller(TodoItemController::class)->middleware('auth')->group(function
     Route::post('/', 'store')->name('store');
     Route::get('todoitems/{todoItem}/edit', 'edit')->name('edit');
     Route::post('todoitems/{todoItem}', 'update')->name('update');
+    Route::get('todoitems/{todoItem}/delete', 'delete')->name('delete');
+    Route::post('todoitems/{todoItem}/delete', 'destroy')->name('destroy');
 });
