@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TodoItemCreateRequest;
+use App\Http\Requests\TodoItemRequest;
 use App\Models\TodoItem;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,7 +28,7 @@ class TodoItemController extends Controller
         ]);
     }
 
-    public function store(TodoItemCreateRequest $request)
+    public function store(TodoItemRequest $request)
     {
         // 登録対象の項目は完了状態以外
         $attributes = $request->safe()->except('is_finished');
@@ -42,28 +42,23 @@ class TodoItemController extends Controller
         return redirect(route('home'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TodoItem $todoItem)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(TodoItem $todoItem)
     {
-        //
+        return view('todo.edit', [
+            'todoItem' => $todoItem,
+            'users' => User::all(),
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TodoItem $todoItem)
+    public function update(TodoItemRequest $request, TodoItem $todoItem)
     {
-        //
+        // 登録対象の項目は完了状態以外
+        $attributes = $request->safe()->except('is_finished');
+        // 完了日：完了にチェックあり→今日、チェックなし→null
+        $attributes['finished_date'] = request('is_finished') ? now()->format('Y-m-d') : null;
+
+        $todoItem->fill($attributes)->save();
+        return redirect(route('home'));
     }
 
     /**
