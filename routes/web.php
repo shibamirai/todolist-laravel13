@@ -13,4 +13,5 @@ Route::controller(LoginController::class)->group(function () {
 Route::controller(TodoItemController::class)->middleware('auth')->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
 });
